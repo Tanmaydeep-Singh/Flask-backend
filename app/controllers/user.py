@@ -31,4 +31,17 @@ def resetPassword():
 	reset(email)
 	return data
 	
+@app.route('/upload', methods=['POST'])
+def upload_csv():
+    if 'file' not in request.files:
+        return "No file part"
+    file = request.files['file']
 
+    if file.filename == '':
+        return "No selected file"
+
+    if file:
+        csv_data = file.read().decode("ISO-8859-1")  # Use the appropriate encoding
+        csv_reader = csv.reader(csv_data)
+        rows = list(csv_reader)
+        return {"data": rows}
