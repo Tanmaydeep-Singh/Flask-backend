@@ -1,6 +1,8 @@
 from flask import jsonify, request
 from app import app
 from ..features.authentication import *
+import csv
+import io
 
 @app.route('/user', methods = ['GET'])
 def user():
@@ -15,12 +17,12 @@ def authUser():
 	return data
 
 @app.route('/login', methods = ['POST'])
-def loginUser():
+def userLogin():
 	data = request.get_json()
 	email = data.get('email')
 	password = data.get('password')
-	loginUser(email,password)
-	return data
+	userData = loginUser(email,password)
+	return userData
 
 @app.route('/reset-password', methods=['POST'])
 def resetPassword():
@@ -29,3 +31,4 @@ def resetPassword():
 	reset(email)
 	return data
 	
+
