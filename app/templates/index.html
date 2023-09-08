@@ -7,8 +7,10 @@
     <h1>Upload CSV File</h1>
     <form method="POST" action="/upload" enctype="multipart/form-data">
         <input type="file" name="file" accept=".csv" required>
-        <input name="td" required>
+        <label>TM</label>
         <input name="tm" required>
+        <label>TD</label>
+        <input name="td" required>
 
         <input type="submit" value="Upload">
     </form>

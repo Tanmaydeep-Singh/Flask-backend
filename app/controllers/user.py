@@ -42,6 +42,6 @@ def upload_csv():
 	file = request.files['file']
 	f = pd.read_csv(file)
 	print("PD",f)
-	trans = calculate(f, td, tm)
+	trans = calculate(f,tm,td)
    
 	return {"data" : trans}

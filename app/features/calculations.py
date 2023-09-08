@@ -1,9 +1,10 @@
 import pandas as pd
 import numpy as np
 
-def calculate(f,td,tm):
+def calculate(f,tm,td):
     df = f
     df
+    print(df)
     
     alX_list, alY_list, alZ_list = df['Seatpad-X'].to_list(), df['Seatpad-Y'].to_list(), df['Seatpad-Z'].to_list()
     alX_list = [float(x) for x in alX_list[1:]]
@@ -14,15 +15,15 @@ def calculate(f,td,tm):
         return (num1 >= 0 and num2 >= 0) or (num1 < 0 and num2 < 0)
 
     def getLists(al_list):
-        splitted = []
-        nums = [al_list[0]]
-        for i in range(1, len(al_list)):
-            if(has_same_sign(al_list[i], al_list[i-1]) == True):
-                nums.append(al_list[i])
-            else:
-                splitted.append(nums)
-            nums = [al_list[i]]
-        return splitted
+      splitted = []
+      nums = [al_list[0]]
+      for i in range(1, len(al_list)):
+        if(has_same_sign(al_list[i], al_list[i-1]) == True):
+          nums.append(al_list[i])
+        else:
+          splitted.append(nums)
+          nums = [al_list[i]]
+      return splitted
 
 
     splitted_x = getLists(alX_list)
@@ -30,13 +31,13 @@ def calculate(f,td,tm):
     splitted_z = getLists(alZ_list)
 
     def splitPosNeg(splitted):
-        pos, neg = [], []
-        for l in splitted:
-            if(l[0] > 0):
-                pos.append(l)
-            else:
-                neg.append(l)
-        return pos, neg
+      pos, neg = [], []
+      for l in splitted:
+        if(l[0] > 0):
+          pos.append(l)
+        else:
+          neg.append(l)
+      return pos, neg
 
     pos_x, neg_x = splitPosNeg(splitted_x)
     pos_y, neg_y = splitPosNeg(splitted_y)
@@ -44,37 +45,20 @@ def calculate(f,td,tm):
     listX, listY, listZ = [], [], []
 
     for i in range(min(len(pos_x), len(neg_x))):
-        listX.append(max(max(pos_x[i]), max(neg_x[i])))
+      listX.append(max(max(pos_x[i]), max(neg_x[i])))
 
     for i in range(min(len(pos_y), len(neg_y))):
-        listY.append(max(max(pos_y[i]), max(neg_y[i])))
+      listY.append(max(max(pos_y[i]), max(neg_y[i])))
 
 
     for l in splitted_z:
-        if(l[0] > 0):
-            listZ.append(max(l))
+      if(l[0] > 0):
+        listZ.append(max(l))
 
-    data = {'Column1': listX}
-    df = pd.DataFrame(data)
-
-    csv_file_path = 'my_dataX.csv'
-
-    df.to_csv(csv_file_path, index=False)
-
-    data = {'Column1': listY}
-    df = pd.DataFrame(data)
-
-    csv_file_path = 'my_dataY.csv'
-
-    df.to_csv(csv_file_path, index=False)
-
-    data = {'Column1': listZ}
-    df = pd.DataFrame(data)
-
-    csv_file_path = 'my_dataZ.csv'
-
-    df.to_csv(csv_file_path, index=False)
-
+    {'Column1': listX}  
+    {'Column1': listY}
+    {'Column1': listZ}
+  
     sixthPowerX, sixthPowerY, sixthPowerZ = 0, 0, 0
 
     for i in listX:
@@ -93,6 +77,7 @@ def calculate(f,td,tm):
     print("DX-DY-DZ")
     print(dx, dy, dz)
 
+    print("tm 7 td")
     tm = float(tm)
     td = float(td)
     
@@ -114,7 +99,7 @@ def calculate(f,td,tm):
 
     s = pow(mx*dx, 6) + pow(my*dy, 6) + pow(mz*dz, 6)
     sc = pow(s, 1/6)
-    print("SC")
+    print("SE")
     print(sc)
 
     std = pow(mx*dx*pow(td/tm, 1/6), 6) + pow(my*dy*pow(td/tm, 1/6), 6) + pow(mz*dz*pow(td/tm, 1/6), 6)
@@ -152,8 +137,9 @@ def calculate(f,td,tm):
 
     print("RS POW 1/6")
     print(pow(sum(rs), 1/6))
+    r=pow(sum(rs), 1/6)
 
-    return "CALCULATE FUNCTION CALLED"
+    return  { "se":sc, "sed": std, "r": r }
 
 
 
