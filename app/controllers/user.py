@@ -39,9 +39,16 @@ def upload_csv():
 	td = request.form.get('td')
 	tm = request.form.get('tm')
 
+	N = request.form.get('N')
+	i = request.form.get('i')
+	n = request.form.get('n')
+	c = request.form.get('c')
+	b = request.form.get('b')
+
+
 	file = request.files['file']
 	f = pd.read_csv(file)
 	print("PD",f)
-	trans = calculate(f,tm,td)
+	trans = calculate(f,tm,td,N,i,n,c,b)
    
 	return {"data" : trans}

@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-def calculate(f,tm,td):
+def calculate(f,tm,td,N,i,n,c,b):
     df = f
     df
     print(df)
@@ -79,7 +79,7 @@ def calculate(f,tm,td):
 
     print("tm 7 td")
     tm = float(tm)
-    td = float(td)
+    td = float(td)  
     
     print("TD/TM power 1/6")
     print(pow(td/tm, 1/6))
@@ -107,12 +107,12 @@ def calculate(f,tm,td):
     print("STD")
     print(std)
 
-    N =	100
-    e = 5
-    i =	3
-    n =	5
-    c =	0.25
-    b = 25
+    N =	float(N)
+    e = int(n)
+    n = float(n)
+    i =	float(i)
+    c =	float(c)
+    b = float(b)
 
     suis = []
 

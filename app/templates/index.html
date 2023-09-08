@@ -7,10 +7,39 @@
     <h1>Upload CSV File</h1>
     <form method="POST" action="/upload" enctype="multipart/form-data">
         <input type="file" name="file" accept=".csv" required>
+        <br/>
+        <br/>
         <label>TM</label>
         <input name="tm" required>
         <label>TD</label>
         <input name="td" required>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+
+
+        <label>Number of exposure days per year (N) </label>
+        <input name="N" required>
+        <br/>
+
+        <label>Year counter (i) </label>
+        <input name="i" required> 
+        <br/>
+
+        <label>Number of years of exposure (n) </label>
+        <input name="n" required>
+        <br/>
+
+        <label>Constant representing the static stress due to gravitational force (c) </label>
+        <label>A value of c = 0,25 MPa can be normally used for driving posture</label>
+        <input name="c" required> 
+        <br/>
+        
+        <label>Age at which the exposure starts (b) </label>
+        <input name="b" required>
+        <br/>
+
 
         <input type="submit" value="Upload">
     </form>
