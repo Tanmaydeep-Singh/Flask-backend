@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+from .raw_peak_data import *
 
 def calculate(f,tm,td,N,i,n,c,b):
     df = f
@@ -29,6 +30,12 @@ def calculate(f,tm,td,N,i,n,c,b):
     splitted_x = getLists(alX_list)
     splitted_y = getLists(alY_list)
     splitted_z = getLists(alZ_list)
+    raw_peak_x, raw_time_x = raw_data_peak(alX_list)
+    raw_peak_y, raw_time_y = raw_data_peak(alY_list)
+    raw_peak_z, raw_time_z = raw_data_peak(alZ_list)
+
+    print(len(raw_peak_x))
+    print(len(raw_time_x))
 
     def splitPosNeg(splitted):
       pos, neg = [], []
@@ -49,7 +56,6 @@ def calculate(f,tm,td,N,i,n,c,b):
 
     for i in range(min(len(pos_y), len(neg_y))):
       listY.append(max(max(pos_y[i]), max(neg_y[i])))
-
 
     for l in splitted_z:
       if(l[0] > 0):
@@ -139,7 +145,7 @@ def calculate(f,tm,td,N,i,n,c,b):
     print(pow(sum(rs), 1/6))
     r=pow(sum(rs), 1/6)
 
-    return  { "se":sc, "sed": std, "r": r }
+    return  { "se":sc, "sed": std, "r": r, "raw_peak_x": raw_peak_x, "raw_time_x": raw_time_x, "raw_peak_y": raw_peak_y, "raw_time_y": raw_time_y, "raw_peak_z": raw_peak_z, "raw_time_z": raw_time_z }
 
 
 
