@@ -1,10 +1,10 @@
 import pandas as pd
 import numpy as np
 
-def calculate(f):
+def calculate(f,td,tm):
     df = f
     df
-
+    
     alX_list, alY_list, alZ_list = df['Seatpad-X'].to_list(), df['Seatpad-Y'].to_list(), df['Seatpad-Z'].to_list()
     alX_list = [float(x) for x in alX_list[1:]]
     alY_list = [float(x) for x in alY_list[1:]]
@@ -86,32 +86,40 @@ def calculate(f):
     for i in listZ:
         sixthPowerZ = sixthPowerZ + pow(i, 6)
 
+    print("SIXTHPOWER X-Y-Z")
     print(sixthPowerX, sixthPowerY, sixthPowerZ)
 
     dx, dy, dz = pow(sixthPowerX, 1/6), pow(sixthPowerY, 1/6), pow(sixthPowerZ, 1/6)
+    print("DX-DY-DZ")
     print(dx, dy, dz)
 
-    tm = 0.017252778
-    td = 8
-
+    tm = float(tm)
+    td = float(td)
+    
+    print("TD/TM power 1/6")
     print(pow(td/tm, 1/6))
 
+    print("DX-DY-DX * TD/TM power 1/6")
     print(dx*pow(td/tm, 1/6), dy*pow(td/tm, 1/6), dz*pow(td/tm, 1/6))
 
     mx = 0.015
     my = 0.035
     mz = 0.032
 
+    print("MX*DX MY*DY MZ*DX")
     print(mx*dx, my*dy, mz*dz)
 
+    print("MX*DX MY*DY MZ*DX POWER 6")
     print(pow(mx*dx, 6), pow(my*dy, 6), pow(mz*dz, 6))
 
     s = pow(mx*dx, 6) + pow(my*dy, 6) + pow(mz*dz, 6)
     sc = pow(s, 1/6)
+    print("SC")
     print(sc)
 
     std = pow(mx*dx*pow(td/tm, 1/6), 6) + pow(my*dy*pow(td/tm, 1/6), 6) + pow(mz*dz*pow(td/tm, 1/6), 6)
     std = pow(std, 1/6)
+    print("STD")
     print(std)
 
     N =	100
@@ -138,9 +146,11 @@ def calculate(f):
 
     for i in suics:
         rs.append(pow(std*pow(N, 1/6)/(i), 6))
-
+    
+    print("RS")
     print(rs)
 
+    print("RS POW 1/6")
     print(pow(sum(rs), 1/6))
 
     return "CALCULATE FUNCTION CALLED"

@@ -36,17 +36,12 @@ def resetPassword():
 
 @app.route('/upload', methods=['POST'])
 def upload_csv():
-    print("called")
-    if 'file' not in request.files:
-        return "No file part"
-    
-    file = request.files['file']
+	td = request.form.get('td')
+	tm = request.form.get('tm')
 
-    if file.filename == '':
-        return "No selected file"
-    f = pd.read_csv(file)
-    print("PD", f)
-    trans = calculate(f)
-
-	    
-    return {"data": trans}
+	file = request.files['file']
+	f = pd.read_csv(file)
+	print("PD",f)
+	trans = calculate(f, td, tm)
+   
+	return {"data" : trans}
