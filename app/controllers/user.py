@@ -1,8 +1,11 @@
 from flask import jsonify, request
 from app import app
 from ..features.authentication import *
+from ..features.calculations import *
 import csv
 import io
+import pandas as pd
+
 
 @app.route('/user', methods = ['GET'])
 def user():
@@ -30,18 +33,20 @@ def resetPassword():
 	email = data.get('email')
 	reset(email)
 	return data
-	
+
 @app.route('/upload', methods=['POST'])
 def upload_csv():
+    print("called")
     if 'file' not in request.files:
         return "No file part"
+    
     file = request.files['file']
 
     if file.filename == '':
         return "No selected file"
+    f = pd.read_csv(file)
+    print("PD", f)
+    trans = calculate(f)
 
-    if file:
-        csv_data = file.read().decode("ISO-8859-1")  # Use the appropriate encoding
-        csv_reader = csv.reader(csv_data)
-        rows = list(csv_reader)
-        return {"data": rows}
+	    
+    return {"data": trans}
