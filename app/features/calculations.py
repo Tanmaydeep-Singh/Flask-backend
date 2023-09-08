@@ -6,6 +6,8 @@ def calculate(f,tm,td,N,i,n,c,b):
     df = f
     df
     print(df)
+
+    time = df['Time'][2]
     
     alX_list, alY_list, alZ_list = df['Seatpad-X'].to_list(), df['Seatpad-Y'].to_list(), df['Seatpad-Z'].to_list()
     alX_list = [float(x) for x in alX_list[1:]]
@@ -30,9 +32,9 @@ def calculate(f,tm,td,N,i,n,c,b):
     splitted_x = getLists(alX_list)
     splitted_y = getLists(alY_list)
     splitted_z = getLists(alZ_list)
-    raw_peak_x, raw_time_x = raw_data_peak(alX_list)
-    raw_peak_y, raw_time_y = raw_data_peak(alY_list)
-    raw_peak_z, raw_time_z = raw_data_peak(alZ_list)
+    raw_peak_x, raw_time_x = raw_data_peak(alX_list,time)
+    raw_peak_y, raw_time_y = raw_data_peak(alY_list,time)
+    raw_peak_z, raw_time_z = raw_data_peak(alZ_list,time)
 
     print(len(raw_peak_x))
     print(len(raw_time_x))

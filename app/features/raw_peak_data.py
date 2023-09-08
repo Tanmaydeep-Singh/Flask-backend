@@ -1,8 +1,9 @@
 import numpy as np
 
-def raw_data_peak(raw_list):
+def raw_data_peak(raw_list, time):
 
     list_value, list_time = [],[]
+    time = float(time)
 
     def has_same_sign(num1, num2):
         return (num1 >= 0 and num2 >= 0) or (num1 < 0 and num2 < 0)
@@ -22,7 +23,7 @@ def raw_data_peak(raw_list):
       return splitted_peak,splitted
     
               
-    def get_time_stamp(array_1, array_2):
+    def get_time_stamp(array_1, array_2, t ):
        time_array = []
        counter = 0
 
@@ -35,15 +36,16 @@ def raw_data_peak(raw_list):
             counter = counter + len(array_2[i-1])
         
         if i == 0:
-            time_array.append(current_peak_index)
+            time_array.append("{:.3f}".format(current_peak_index* t ))
         else:
-            time_array.append(current_peak_index + counter)
+            time_array.append("{:.3f}".format((current_peak_index + counter) * t))
 
        return time_array
  
     
     list_value, splitted_values = getLists(raw_list)
-    list_time = get_time_stamp(list_value, splitted_values)
+    list_time = get_time_stamp(list_value, splitted_values, time)
+    
     print("list time", list_time)
 
     return list_value,list_time
