@@ -41,11 +41,23 @@ def raw_data_peak(raw_list, time):
             time_array.append("{:.3f}".format((current_peak_index + counter) * t))
 
        return time_array
- 
+    
+    def splitPosNeg(list_value):
+      pos, neg = [], []
+      for l in list_value:
+        if(l > 0):
+          pos.append(l)
+        else:
+          neg.append(l)
+      return max(pos), min(neg)
     
     list_value, splitted_values = getLists(raw_list)
     list_time = get_time_stamp(list_value, splitted_values, time)
-    
-    print("list time", list_time)
 
-    return list_value,list_time
+    pos,neg = splitPosNeg(list_value)
+    print("pos",pos)
+    print("neg",neg)
+    
+    
+
+    return list_value,list_time, pos, neg

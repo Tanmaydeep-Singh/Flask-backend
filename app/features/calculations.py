@@ -32,9 +32,16 @@ def calculate(f,tm,td,N,i,n,c,b):
     splitted_x = getLists(alX_list)
     splitted_y = getLists(alY_list)
     splitted_z = getLists(alZ_list)
-    raw_peak_x, raw_time_x = raw_data_peak(alX_list,time)
-    raw_peak_y, raw_time_y = raw_data_peak(alY_list,time)
-    raw_peak_z, raw_time_z = raw_data_peak(alZ_list,time)
+
+    raw_peak_x, raw_time_x, raw_pos_x ,raw_neg_x = raw_data_peak(alX_list,time)
+    raw_peak_y, raw_time_y, raw_pos_y ,raw_neg_y  = raw_data_peak(alY_list,time)
+    raw_peak_z, raw_time_z, raw_pos_z ,raw_neg_z  = raw_data_peak(alZ_list,time)
+
+    print("pos", raw_pos_x)
+    print("neg", raw_neg_x)
+
+    raw_max_pos = max([raw_pos_x, raw_pos_y, raw_pos_z])
+    raw_max_neg = min([raw_neg_x, raw_neg_y, raw_neg_z])
 
     print(len(raw_peak_x))
     print(len(raw_time_x))
@@ -147,7 +154,7 @@ def calculate(f,tm,td,N,i,n,c,b):
     print(pow(sum(rs), 1/6))
     r=pow(sum(rs), 1/6)
 
-    return  { "se":sc, "sed": std, "r": r, "raw_peak_x": raw_peak_x, "raw_time_x": raw_time_x, "raw_peak_y": raw_peak_y, "raw_time_y": raw_time_y, "raw_peak_z": raw_peak_z, "raw_time_z": raw_time_z }
+    return  { "se":sc, "sed": std, "r": r, "raw_peak_x": raw_peak_x, "raw_time_x": raw_time_x, "raw_peak_y": raw_peak_y, "raw_time_y": raw_time_y, "raw_peak_z": raw_peak_z, "raw_time_z": raw_time_z, "raw_pos_x":raw_pos_x ,"raw_neg_x": raw_neg_x,"raw_pos_y":raw_pos_y ,"raw_neg_y": raw_neg_y, "raw_pos_z":raw_pos_z ,"raw_neg_z": raw_neg_z, "raw_max_pos":raw_max_pos,"raw_max_neg": raw_max_neg  }
 
 
 
