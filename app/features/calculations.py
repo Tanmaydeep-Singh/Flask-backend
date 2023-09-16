@@ -153,8 +153,8 @@ def calculate(f,tm,td,N,i,n,c,b):
     print("RS POW 1/6")
     print(pow(sum(rs), 1/6))
     r=pow(sum(rs), 1/6)
-
-    return  { "se":sc, "sed": std, "r": r, "raw_peak_x": raw_peak_x, "raw_time_x": raw_time_x, "raw_peak_y": raw_peak_y, "raw_time_y": raw_time_y, "raw_peak_z": raw_peak_z, "raw_time_z": raw_time_z, "raw_pos_x":raw_pos_x ,"raw_neg_x": raw_neg_x,"raw_pos_y":raw_pos_y ,"raw_neg_y": raw_neg_y, "raw_pos_z":raw_pos_z ,"raw_neg_z": raw_neg_z, "raw_max_pos":raw_max_pos,"raw_max_neg": raw_max_neg  }
-
+    data = {} 
+    data = {"se":sc, "sed": std, "r": r, "raw_peak_x": raw_peak_x, "raw_time_x": raw_time_x, "raw_peak_y": raw_peak_y, "raw_time_y": raw_time_y, "raw_peak_z": raw_peak_z, "raw_time_z": raw_time_z, "raw_pos_x":raw_pos_x ,"raw_neg_x": raw_neg_x,"raw_pos_y":raw_pos_y ,"raw_neg_y": raw_neg_y, "raw_pos_z":raw_pos_z ,"raw_neg_z": raw_neg_z, "raw_max_pos":raw_max_pos,"raw_max_neg": raw_max_neg }
+    return data
 
 
