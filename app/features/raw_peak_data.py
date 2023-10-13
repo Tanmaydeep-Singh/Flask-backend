@@ -55,8 +55,8 @@ def raw_data_peak(raw_list, time):
     list_time = get_time_stamp(list_value, splitted_values, time)
 
     pos,neg = splitPosNeg(list_value)
-    print("pos",pos)
-    print("neg",neg)
+    # print("pos",pos)
+    # print("neg",neg)
     
     
 
