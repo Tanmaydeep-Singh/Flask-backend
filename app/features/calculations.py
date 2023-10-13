@@ -5,7 +5,6 @@ from .raw_peak_data import *
 def calculate(f,tm,td,N,i,n,c,b):
     df = f
     df
-    print(df)
 
     time = df['Time'][2]
     
