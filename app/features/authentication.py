@@ -55,5 +55,5 @@ def addUserData(user_id, data):
 def getUserHistory(user_id):
 
     user = collection.find_one({"user_id":user_id})
-    return "ok"
+    return user
 

@@ -20,8 +20,7 @@ def authUser():
 	email = data.get('email')
 	password = data.get('password')
 	response = authanticateUser(email, password)
-	# print("response", response)
-	return response
+	return {"userID": response}
 
 @app.route('/login', methods = ['POST'])
 def userLogin():
@@ -29,7 +28,7 @@ def userLogin():
 	email = data.get('email')
 	password = data.get('password')
 	userData = loginUser(email,password)
-	return userData
+	return {"userID": userData}
 
 @app.route('/reset-password', methods=['POST'])
 def resetPassword():
@@ -44,7 +43,6 @@ def upload_csv():
 	user_id = headers.get('Userid')
 	td = request.form.get('td')
 	tm = request.form.get('tm')
-
 	N = request.form.get('N')
 	i = request.form.get('i')
 	n = request.form.get('n')
@@ -101,8 +99,7 @@ def upload_csv_for_se():
 def get_user_history():
 	headers = request.headers
 	user_id = headers.get('Userid')
-	# print("user_id HEADER", user_id)
+	print("user_id HEADER", user_id)
 	data = getUserHistory(user_id)
-   
-	return data
+	return {"userData" : data}
 

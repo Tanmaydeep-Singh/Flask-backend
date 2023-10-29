@@ -3,6 +3,7 @@ import numpy as np
 from .raw_peak_data import *
 
 def calculate(f,tm,td,N,i,n,c,b):
+    print("called")
     df = f
     df
 
@@ -153,7 +154,7 @@ def calculate(f,tm,td,N,i,n,c,b):
     # print(pow(sum(rs), 1/6))
     r=pow(sum(rs), 1/6)
     data = {} 
-    data = {"se":sc, "sed": std, "r": r, "raw_peak_x": raw_peak_x, "raw_time_x": raw_time_x, "raw_peak_y": raw_peak_y, "raw_time_y": raw_time_y, "raw_peak_z": raw_peak_z, "raw_time_z": raw_time_z, "raw_pos_x":raw_pos_x ,"raw_neg_x": raw_neg_x,"raw_pos_y":raw_pos_y ,"raw_neg_y": raw_neg_y, "raw_pos_z":raw_pos_z ,"raw_neg_z": raw_neg_z, "raw_max_pos":raw_max_pos,"raw_max_neg": raw_max_neg }
+    data = {"se":sc, "sed": std, "r": r, "raw_peak_x": raw_peak_x, "raw_time_x": raw_time_x, "raw_peak_y": raw_peak_y, "raw_time_y": raw_time_y, "raw_peak_z": raw_peak_z, "raw_time_z": raw_time_z, "raw_pos_x":raw_pos_x ,"raw_neg_x": raw_neg_x,"raw_pos_y":raw_pos_y ,"raw_neg_y": raw_neg_y, "raw_pos_z":raw_pos_z ,"raw_neg_z": raw_neg_z, "raw_max_pos":raw_max_pos,"raw_max_neg": raw_max_neg, "dx":dx, "dy":dy , "dz": dz}
     
     return data
 
@@ -243,8 +244,8 @@ def calculate_se(f,tm,td):
   # print(sixthPowerX, sixthPowerY, sixthPowerZ)
 
     dx, dy, dz = pow(sixthPowerX, 1/6), pow(sixthPowerY, 1/6), pow(sixthPowerZ, 1/6)
-  # print("DX-DY-DZ")
-  # print(dx, dy, dz)
+    print("DX-DY-DZ")
+    print(dx, dy, dz)
 
   # print("tm 7 td")
     tm = float(tm)
@@ -271,5 +272,5 @@ def calculate_se(f,tm,td):
   # print("SE")
   # print(sc)
     data = {} 
-    data = {"se":sc, "raw_peak_x": raw_peak_x, "raw_time_x": raw_time_x, "raw_peak_y": raw_peak_y, "raw_time_y": raw_time_y, "raw_peak_z": raw_peak_z, "raw_time_z": raw_time_z, "raw_pos_x":raw_pos_x ,"raw_neg_x": raw_neg_x,"raw_pos_y":raw_pos_y ,"raw_neg_y": raw_neg_y, "raw_pos_z":raw_pos_z ,"raw_neg_z": raw_neg_z, "raw_max_pos":raw_max_pos,"raw_max_neg": raw_max_neg }
+    data = {"se":sc, "raw_peak_x": raw_peak_x, "raw_time_x": raw_time_x, "raw_peak_y": raw_peak_y, "raw_time_y": raw_time_y, "raw_peak_z": raw_peak_z, "raw_time_z": raw_time_z, "raw_pos_x":raw_pos_x ,"raw_neg_x": raw_neg_x,"raw_pos_y":raw_pos_y ,"raw_neg_y": raw_neg_y, "raw_pos_z":raw_pos_z ,"raw_neg_z": raw_neg_z, "raw_max_pos":raw_max_pos,"raw_max_neg": raw_max_neg, "dx": dx, "dy": dy, "dz":dz }
     return data

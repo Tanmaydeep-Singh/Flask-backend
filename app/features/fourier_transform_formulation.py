@@ -60,41 +60,43 @@ def fourier_transform_function(data):
     _, psd_proto1_filtered = welch(proto1_filtered, fs=500)
 
     # Create a function to simplify the plotting
-    # def plot_setup(ax, xlabel, ylabel, xlim, xticks):
-    #     ax.set_xlabel(xlabel, fontweight='bold', fontsize=20)
-    #     ax.set_ylabel(ylabel, fontweight='bold', fontsize=20)
-    #     ax.set_xlim(xlim)
-    #     ax.set_xticks(xticks)
-    #     ax.tick_params(axis='both', which='major', labelsize=18)
-    #     ax.grid(True, which='both', linestyle='--', linewidth=0.5)
+    def plot_setup(ax, xlabel, ylabel, xlim, xticks):
+        ax.set_xlabel(xlabel, fontweight='bold', fontsize=20)
+        ax.set_ylabel(ylabel, fontweight='bold', fontsize=20)
+        ax.set_xlim(xlim)
+        ax.set_xticks(xticks)
+        ax.tick_params(axis='both', which='major', labelsize=18)
+        ax.grid(True, which='both', linestyle='--', linewidth=0.5)
 
-    # fig, ax = plt.subplots(3, 2, figsize=(14, 10))
+    fig, ax = plt.subplots(3, 2, figsize=(14, 10))
 
     # Unfiltered data plots
-    # ax[0, 0].plot(time1, ref1_unfiltered, 'b', linewidth=3)
-    # plot_setup(ax[0, 0], "", "Amp. (m/s^2)", [0, 30], range(0, 32, 2))
-    # ax[0, 0].legend(['Reference'])
+    ax[0, 0].plot(time1, ref1_unfiltered, 'b', linewidth=3)
+    plot_setup(ax[0, 0], "", "Amp. (m/s^2)", [0, 30], range(0, 32, 2))
+    ax[0, 0].legend(['Reference'])
 
-    # ax[0, 1].plot(time1, proto1_unfiltered, 'r', linewidth=3)
-    # plot_setup(ax[0, 1], "", "Amp. (m/s^2)", [0, 30], range(0, 32, 2))
-    # ax[0, 1].legend(['Prototype'])
+    ax[0, 1].plot(time1, proto1_unfiltered, 'r', linewidth=3)
+    plot_setup(ax[0, 1], "", "Amp. (m/s^2)", [0, 30], range(0, 32, 2))
+    ax[0, 1].legend(['Prototype'])
 
-    # ax[1, 0].plot(f, magnitude_spectrum_ref1_unfiltered, 'b', linewidth=3)
-    # plot_setup(ax[1, 0], "", "Magnitude", [0, 30], range(0, 32, 2))
+    ax[1, 0].plot(f, magnitude_spectrum_ref1_unfiltered, 'b', linewidth=3)
+    plot_setup(ax[1, 0], "", "Magnitude", [0, 30], range(0, 32, 2))
 
-    # ax[1, 1].plot(f, magnitude_spectrum_proto1_unfiltered, 'r', linewidth=3)
-    # plot_setup(ax[1, 1], "", "Magnitude", [0, 30], range(0, 32, 2))
+    ax[1, 1].plot(f, magnitude_spectrum_proto1_unfiltered, 'r', linewidth=3)
+    plot_setup(ax[1, 1], "", "Magnitude", [0, 30], range(0, 32, 2))
 
-    # ax[2, 0].plot(f_psd, 10*np.log10(psd_ref1_unfiltered), 'b', linewidth=3)
-    # plot_setup(ax[2, 0], "Frequency (Hz)", "PSD (dB/Hz)", [0, 30], range(0, 32, 2))
+    ax[2, 0].plot(f_psd, 10*np.log10(psd_ref1_unfiltered), 'b', linewidth=3)
+    plot_setup(ax[2, 0], "Frequency (Hz)", "PSD (dB/Hz)", [0, 30], range(0, 32, 2))
 
-    # ax[2, 1].plot(f_psd, 10*np.log10(psd_proto1_unfiltered), 'r', linewidth=3)
-    # plot_setup(ax[2, 1], "Frequency (Hz)", "PSD (dB/Hz)", [0, 30], range(0, 32, 2))
-    data_dict = {} 
+    ax[2, 1].plot(f_psd, 10*np.log10(psd_proto1_unfiltered), 'r', linewidth=3)
+    plot_setup(ax[2, 1], "Frequency (Hz)", "PSD (dB/Hz)", [0, 30], range(0, 32, 2))
+    data_dict = {}
+    # plt.tight_layout()
+    # plt.show() 
 
-  # print("time",time1)
-  # print("ref",ref1_unfiltered )
-  # print( "proto1_unfiltered",proto1_unfiltered)
+    print("time",time1)
+    print("ref",ref1_unfiltered )
+    print( "proto1_unfiltered",proto1_unfiltered)
 
     data_dict ={"Amp" : {"time":time1.tolist(), "ref1_unfiltered":ref1_unfiltered.tolist(), "proto1_unfiltered":proto1_unfiltered.tolist() }, "Magnitude": {"frequency":f.tolist(), "magnitude_spectrum_ref1_unfiltered":magnitude_spectrum_ref1_unfiltered.tolist(), "magnitude_spectrum_proto1_unfiltered":magnitude_spectrum_proto1_unfiltered.tolist()},"Frequency": {"f_psd":f_psd.tolist(), "psd_ref1_unfiltered":10*np.log10(psd_ref1_unfiltered).tolist(), "psd_proto1_unfiltered":10*np.log10(psd_proto1_unfiltered).tolist() }}
 
