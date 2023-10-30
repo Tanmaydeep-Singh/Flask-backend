@@ -10,8 +10,8 @@ def fourier_transform_function(data):
     # Extract the columns for time and acceleration
     time = np.array(data['Time'].values[1:], dtype=float)
     time = time - np.min(time)  # Adjust time to start from 0
-    acc1 = np.array(data['Seatpad-X'].values[1:], dtype=float)
-    acc2 = np.array(data['Seatpad-Z'].values[1:], dtype=float) - 1
+    acc1 = np.array(data['X'].values[1:], dtype=float)
+    acc2 = np.array(data['Z'].values[1:], dtype=float) - 1
   # print("check 1")
 
     # Use n data points

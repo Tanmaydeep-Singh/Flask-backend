@@ -4,9 +4,9 @@ from scipy.signal import butter, filtfilt
 
 def aw_new_xyz(data):
     time = np.array(data['Time'].values[1:] , dtype=float)
-    ax = np.array(data['Seatpad-X'].values[1:]  , dtype=float)
-    ay = np.array(data['Seatpad-Y'].values[1:]  , dtype=float)
-    az = np.array(data['Seatpad-Z'].values[1:]  , dtype=float)
+    ax = np.array(data['X'].values[1:]  , dtype=float)
+    ay = np.array(data['Y'].values[1:]  , dtype=float)
+    az = np.array(data['Z'].values[1:]  , dtype=float)
 
     # Butterworth band-pass filter
     t1 = time[2]

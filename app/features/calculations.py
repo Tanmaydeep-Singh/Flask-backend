@@ -9,7 +9,7 @@ def calculate(f,tm,td,N,i,n,c,b):
 
     time = df['Time'][2]
     
-    alX_list, alY_list, alZ_list = df['Seatpad-X'].to_list(), df['Seatpad-Y'].to_list(), df['Seatpad-Z'].to_list()
+    alX_list, alY_list, alZ_list = df['X'].to_list(), df['Y'].to_list(), df['Z'].to_list()
     alX_list = [float(x) for x in alX_list[1:]]
     alY_list = [float(x) for x in alY_list[1:]]
     alZ_list = [float(x) for x in alZ_list[1:]]
@@ -164,7 +164,7 @@ def calculate_se(f,tm,td):
 
     time = df['Time'][2]
     
-    alX_list, alY_list, alZ_list = df['Seatpad-X'].to_list(), df['Seatpad-Y'].to_list(), df['Seatpad-Z'].to_list()
+    alX_list, alY_list, alZ_list = df['X'].to_list(), df['Y'].to_list(), df['Z'].to_list()
     alX_list = [float(x) for x in alX_list[1:]]
     alY_list = [float(x) for x in alY_list[1:]]
     alZ_list = [float(x) for x in alZ_list[1:]]
