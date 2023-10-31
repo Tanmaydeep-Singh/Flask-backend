@@ -2,7 +2,6 @@ import numpy as np
 
 
 def overall_aw_value(awx,awy,awz):
-    # Assuming that wk values are for the z-axis and wd values are for the x and y axes
     wk = [
         31.2, 48.6, 79.0, 121, 182, 263, 352,
         418, 459, 477, 482, 484, 494, 531,
@@ -21,7 +20,6 @@ def overall_aw_value(awx,awy,awz):
         0.31
     ]
 
-# Calculate the overall weighted acceleration using the given formula
     squared_sum = sum([(wk[i] * awz[i])**2 + (wd[i] * awx[i])**2 + (wd[i] * awy[i])**2 for i in range(len(wk))])
     aw = np.sqrt(squared_sum)
 

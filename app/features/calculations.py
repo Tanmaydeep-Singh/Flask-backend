@@ -3,7 +3,6 @@ import numpy as np
 from .raw_peak_data import *
 
 def calculate(f,tm,td,N,i,n,c,b):
-    print("called")
     df = f
     df
 
@@ -114,14 +113,30 @@ def calculate(f,tm,td,N,i,n,c,b):
 
     s = pow(mx*dx, 6) + pow(my*dy, 6) + pow(mz*dz, 6)
     sc = pow(s, 1/6)
+    se = sc
     # print("SE")
     # print(sc)
 
     std = pow(mx*dx*pow(td/tm, 1/6), 6) + pow(my*dy*pow(td/tm, 1/6), 6) + pow(mz*dz*pow(td/tm, 1/6), 6)
     std = pow(std, 1/6)
-    # print("STD")
-    # print(std)
+    # print("SED")
+    # print(sed)
 
+    # temptd = td
+    # tempstd = std
+    # if std > 0.5: 
+    #   while tempstd > 0.5 : 
+    #     print("Zyada hai")
+    #     print(tempstd)
+    #     temp = temptd % 0.5
+    #     temptd = temptd - temp
+    #     tempstd = pow(mx*dx*pow(temptd/tm, 1/6), 6) + pow(my*dy*pow(temptd/tm, 1/6), 6) + pow(mz*dz*pow(temptd/tm, 1/6), 6)
+    #     tempstd = pow(tempstd, 1/6)
+    #   print("km baitha kar" , tempstd)
+    # else:
+    #   remark  = "Low Probablilty of adverse health effect, So no issues"
+    #   print("Hawwww")
+      
     N =	float(N)
     e = int(n)
     n = float(n)
@@ -153,8 +168,10 @@ def calculate(f,tm,td,N,i,n,c,b):
     # print("RS POW 1/6")
     # print(pow(sum(rs), 1/6))
     r=pow(sum(rs), 1/6)
+    remark  = "Low Probablilty of adverse health effect, So no issues"
+
     data = {} 
-    data = {"se":sc, "sed": std, "r": r, "raw_peak_x": raw_peak_x, "raw_time_x": raw_time_x, "raw_peak_y": raw_peak_y, "raw_time_y": raw_time_y, "raw_peak_z": raw_peak_z, "raw_time_z": raw_time_z, "raw_pos_x":raw_pos_x ,"raw_neg_x": raw_neg_x,"raw_pos_y":raw_pos_y ,"raw_neg_y": raw_neg_y, "raw_pos_z":raw_pos_z ,"raw_neg_z": raw_neg_z, "raw_max_pos":raw_max_pos,"raw_max_neg": raw_max_neg, "dx":dx, "dy":dy , "dz": dz}
+    data = {"se":se, "sed": std, "r": r, "raw_peak_x": raw_peak_x, "raw_time_x": raw_time_x, "raw_peak_y": raw_peak_y, "raw_time_y": raw_time_y, "raw_peak_z": raw_peak_z, "raw_time_z": raw_time_z, "raw_pos_x":raw_pos_x ,"raw_neg_x": raw_neg_x,"raw_pos_y":raw_pos_y ,"raw_neg_y": raw_neg_y, "raw_pos_z":raw_pos_z ,"raw_neg_z": raw_neg_z, "raw_max_pos":raw_max_pos,"raw_max_neg": raw_max_neg, "dx":dx, "dy":dy , "dz": dz, "remark": remark}
     
     return data
 
@@ -229,7 +246,7 @@ def calculate_se(f,tm,td):
     {'Column1': listY}
     {'Column1': listZ}
   
-    sixthPowerX, sixthPowerY, sixthPowerZ = 0, 0, 0
+    sixthPowerX, sixthPowerY, sixthPowerZ = 0, 0, 0 
 
     for i in listX:
         sixthPowerX = sixthPowerX + pow(i, 6)

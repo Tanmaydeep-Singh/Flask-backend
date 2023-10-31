@@ -6,8 +6,6 @@ from app.features.fourier_transform_formulation import fourier_transform_functio
 from app.features.vibrationDoses import vibration_doses_xyz
 from ..features.authentication import *
 from ..features.calculations import *
-import csv
-import io
 import pandas as pd
 
 @app.route('/user', methods = ['GET'])
@@ -49,19 +47,9 @@ def upload_csv():
 	c = request.form.get('c')
 	b = request.form.get('b')
 
-	# print("user_id", user_id)
-	# print('TD',td)
-	# print('TM',tm)
-	# print('N',N)
-	# print('i',i)
-	# print('n',n)
-	# print('c',c)
-	# print('b',b)
-
 	file = request.files['file']
 	f = pd.read_csv(file)
 	trans = calculate(f,tm,td,N,i,n,c,b)
-	# addUserData(user_id, trans)
 
 	# aw 
 	aw_new = aw_new_xyz(f)
