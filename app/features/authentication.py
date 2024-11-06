@@ -24,15 +24,15 @@
 
 
 # def authanticateUser(email,password):
-#     user =auth.create_user_with_email_and_password(email,password)
-#     user_id = user.get('localId')
-#     result = collection.insert_one({ "user_id": user_id, "data_list": []})
-#     return user_id
+#     # user =auth.create_user_with_email_and_password(email,password)
+#     # user_id = user.get('localId')
+#     # result = collection.insert_one({ "user_id": user_id, "data_list": []})
+#     return "user_id"
 
 # def loginUser(email,password):
-#     user = auth.sign_in_with_email_and_password(email, password)
-#     user_id = user.get('localId')
-#     return user_id
+#     # user = auth.sign_in_with_email_and_password(email, password)
+#     # user_id = user.get('localId')
+#     return "user_id"
 
 # def reset(email):
 #     auth.send_password_reset_email(email)
