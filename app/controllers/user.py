@@ -4,36 +4,12 @@ from app.features.aw_overall import overall_aw_value
 from app.features.aw_xyz import aw_new_xyz
 from app.features.fourier_transform_formulation import fourier_transform_function
 from app.features.vibrationDoses import vibration_doses_xyz
-from ..features.authentication import *
 from ..features.calculations import *
 import pandas as pd
 
 @app.route('/user', methods = ['GET'])
 def user():
 	return "USER"
-
-@app.route('/auth', methods = ['POST'])
-def authUser():
-	data = request.get_json()
-	email = data.get('email')
-	password = data.get('password')
-	response = authanticateUser(email, password)
-	return {"userID": response}
-
-@app.route('/login', methods = ['POST'])
-def userLogin():
-	data = request.get_json()
-	email = data.get('email')
-	password = data.get('password')
-	userData = loginUser(email,password)
-	return {"userID": userData}
-
-@app.route('/reset-password', methods=['POST'])
-def resetPassword():
-	data = request.get_json()
-	email = data.get('email')
-	reset(email)
-	return data
 
 @app.route('/upload', methods=['POST'])
 def upload_csv():
@@ -79,15 +55,15 @@ def upload_csv_for_se():
 	file = request.files['file']
 	f = pd.read_csv(file)
 	trans = calculate_se(f,tm,td)
-	addUserData(user_id, trans)
+	# addUserData(user_id, trans)
    
 	return {"data" : trans}
 
-@app.route('/user-history')
-def get_user_history():
-	headers = request.headers
-	user_id = headers.get('Userid')
-	print("user_id HEADER", user_id)
-	data = getUserHistory(user_id)
-	return {"userData" : data}
+# @app.route('/user-history')
+# def get_user_history():
+# 	headers = request.headers
+# 	user_id = headers.get('Userid')
+# 	print("user_id HEADER", user_id)
+# 	data = getUserHistory(user_id)
+# 	return {"userData" : data}
 
